@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <limits>
 using namespace std;
 
 int main()
@@ -7,10 +8,11 @@ int main()
 
     // by placing strings one after another
     cout << endl
-         << "Enter a sentence: " ;
+         << "Enter a sentence: ";
 
     cin >> a >> b;
-    cout << a << " " << b << endl << endl;
+    cout << a << " " << b << endl
+         << endl;
 
     // ignoring the last newline character
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -18,7 +20,8 @@ int main()
     // using getline function
     cout << "Enter another sentence: ";
     getline(cin, line);
-    cout << line << endl << endl;
+    cout << line << endl
+         << endl;
 
     // using character pointer to store a sentence into char type variable
     const char *ch = "DSA isn't easy";
