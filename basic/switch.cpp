@@ -13,29 +13,35 @@ enum Result {
     FAIL
 };
 
-int marks;
+const int passsmarks = 36;
+
 int main () {
     int marks;
     string name;
 
     cout << "Enter your name: ";
     getline(cin, name);
+    string firstName = getFirstName(name);
 
     cout << "Enter your marks: ";
     cin >> marks;
+    cout << endl;
 
-    Result result = (marks > 36) ? PASS : FAIL;
+    Result result = (marks > passsmarks) ? PASS : FAIL;
 
     switch (result) {
         case PASS :
-            cout << getFirstName(name) << " you are passed with " << marks << " marks";
+            cout << firstName << ", you are passed with " << marks << " marks";
             break;
 
         case FAIL :
-            cout << getFirstName(name) << " you are failed with " << marks << " marks";
+            cout << firstName << ", you are failed with " << marks << " marks" << " and need more " << (passsmarks - marks) << " marks to get promoted.";
             break;
-            
-        default:
+
+        default :
+            cout << "Invalid result";
             break;
     }
+
+    return 0;
 }
