@@ -60,5 +60,7 @@
     "*.embeddedhtml": "html",
     "ostream": "cpp",
     "iostream": "cpp"
-  }
+  },
+  "pieces.cloudCapabilities": "Blended",
+  "pieces.telemetry": true
 }
