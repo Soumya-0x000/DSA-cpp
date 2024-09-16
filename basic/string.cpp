@@ -12,7 +12,8 @@ int main()
           << "Enter a sentence: ";
 
      cin >> a >> b;
-     cout << a << "\nsize of a: " << a.size() << endl << b << "\nsize of b: " << b.size() << endl
+     cout << "a = " << a << "\nsize of a: " << a.size() << endl
+          << "b = " << b << "\nsize of b: " << b.size() << endl
           << endl;
 
      // ignoring the last newline character
@@ -25,8 +26,9 @@ int main()
           << endl;
 
      // using character pointer to store a sentence into char type variable
-     const char* ch = "DSA isn't easy";
-     cout << ch << endl << "size of ch: " << strlen(ch) << endl;
+     const char *ch = "DSA isn't easy";
+     cout << ch << endl
+          << "size of ch: " << strlen(ch) << endl;
 
      // using char array to store a sentence
      char ch1[50];
