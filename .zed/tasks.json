@@ -1,0 +1,7 @@
+[
+  {
+    "label": "Build & Run C++",
+    "command": "cd $ZED_DIRNAME; g++ -o $ZED_STEM $ZED_FILE; if ($?) { ./$ZED_STEM; Remove-Item $ZED_STEM.exe -ErrorAction SilentlyContinue }",
+    "tags": ["cpp"]
+  }
+]
