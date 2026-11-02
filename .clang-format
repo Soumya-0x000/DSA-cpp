@@ -1,0 +1,9 @@
+# C++ formatting for Zed (clangd). Mirrors the relevant parts of .prettierrc.json,
+# which Zed only uses for JS/TS/CSS/JSON/Markdown/YAML, never for C/C++.
+---
+BasedOnStyle: LLVM
+IndentWidth: 4      # prettier tabWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 200    # prettier printWidth: 200
+LineEnding: LF      # prettier endOfLine: lf
