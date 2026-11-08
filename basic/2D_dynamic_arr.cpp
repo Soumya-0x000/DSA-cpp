@@ -10,7 +10,7 @@ int main() {
     int row, col;
     cout << "\nEnter row number: ";
     cin >> row;
-    cout << "\nEnter column number: ";
+    cout << "Enter column number: " << "\n";
     cin >> col;
 
     // Create a 2D vector with `row` rows; each row is a vector of `col` ints

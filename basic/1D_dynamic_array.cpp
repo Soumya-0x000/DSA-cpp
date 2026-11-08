@@ -4,6 +4,15 @@
 
 using namespace std;
 
+void printArr(vector<int> arr) {
+    for (int x : arr)
+        cout << x << "\t";
+}
+
+vector<int> fillArr(vector<int> arr) {
+    
+}
+
 int main() {
     // Starting array with some pre-filled values
     vector<int> arr = {2, 7, 1, 3, 9};
@@ -12,79 +21,75 @@ int main() {
     // Ask the user how many new elements they want to append
     cout << "How many elements do you want to insert: ";
     cin >> size;
-    // Remember the original count, because `size` is decremented in the loop below
-    int insertingItemCount = size;
 
-    // Loop runs `size` times (size-- evaluates the old value, then decrements)
-    while (size--) {
-        int num;
-        cout << "Enter number: " << "\t";
-        cin >> num;
-        arr.push_back(num); // Append the entered number to the end of the array
+    if (size != 0) {
+        // Remember the original count, because `size` is decremented in the loop below
+        int insertingItemCount = size;
+        vector<int> insertedItemArr = {};
 
-        // size == 0 means this was the last iteration, so all inputs are in
-        if (size == 0) {
-            // Print the whole array (original + inserted elements)
-            cout << "Here is your updated arr: ";
-            for (int x : arr)
-                cout << x << "\t";
+        // Loop runs `size` times (size-- evaluates the old value, then decrements)
+        while (size--) {
+            int num;
+            cout << "Enter number: " << "\t";
+            cin >> num;
+            arr.push_back(num); // Append the entered number to the end of the array
+            insertedItemArr.push_back(num);
+        }
 
-            cout << "\nYour inserted items are: ";
-            int arrSize = arr.size();
+        // Print the whole array (original + inserted elements)
+        cout << "Here is your updated arr: ";
+        printArr(arr);
+        int arrSize = arr.size();
 
-            // The inserted items are the last `insertingItemCount` elements of arr.
-            // Copy them into a separate vector so we can search them later.
-            vector<int> insertedItemArr = {};
-            for (int i = arrSize - insertingItemCount; i < arrSize; i++) {
-                int item = arr[i];
-                insertedItemArr.push_back(item);
-                cout << item << '\t';
-            }
+        cout << "\nYour inserted items are: ";
+        // The inserted items are the last `insertingItemCount` elements of arr.
+        // Copy them into a separate vector so we can search them later.
+        printArr(insertedItemArr);
 
-            // Ask whether the user wants to undo (remove) some inserted items
-            char shouldPop;
-            cout << "\nWant to popback inserted items?" << '\n' << "y/n: ";
-            cin >> shouldPop;
-            if (shouldPop == 'y') {
-                // Read as a string so the user can type either 'a' or a number
-                string popMode;
-                cout << "\nPop all inserted items or a specific one?";
-                cout << "\nIf all then type 'a' or u can put the specific value to pop: ";
-                cin >> popMode;
+        // Ask whether the user wants to undo (remove) some inserted items
+        char shouldPop;
+        cout << "\nWant to popback inserted items?" << '\n' << "y/n: ";
+        cin >> shouldPop;
+        if (shouldPop == 'y') {
+            // Read as a string so the user can type either 'a' or a number
+            string popMode;
+            cout << "\nPop all inserted items or a specific one?";
+            cout << "\nIf all then type 'a' or u can put the specific value to pop: ";
+            cin >> popMode;
 
-                if (popMode == "a") {
-                    // Remove every inserted item by popping from the back
-                    for (int k = 0; k < insertingItemCount; k++) {
-                        arr.pop_back();
-                    }
-                } else if (popMode.find_first_not_of("0123456789") == string::npos) {
-                    // Input contains only digits, so treat it as a value to remove
-                    int value = atoi(popMode.c_str());
+            if (popMode == "a") {
+                // Remove every inserted item by popping from the back
+                for (int k = 0; k < insertingItemCount; k++) {
+                    arr.pop_back();
+                }
+            } else if (popMode.find_first_not_of("0123456789") == string::npos) {
+                // Input contains only digits, so treat it as a value to remove
+                int value = atoi(popMode.c_str());
 
-                    bool itemFound = false;
-                    // Index in arr where the inserted items begin
-                    int mainArrSize = arrSize - insertingItemCount;
-                    // Search only among the inserted items (not the original ones)
-                    for (int i = 0; i < insertedItemArr.size(); i++) {
-                        if (insertedItemArr[i] == value) {
-                            // Map the position in insertedItemArr back to arr and erase it
-                            arr.erase(arr.begin() + mainArrSize + i);
-                            itemFound = true;
-                            break; // Remove only the first match
-                        }
-                    }
-                    if (!itemFound) {
-                        cout << "\nYou entered a no that you didn't inserted previously";
+                bool itemFound = false;
+                // Index in arr where the inserted items begin
+                int mainArrSize = arrSize - insertingItemCount;
+                // Search only among the inserted items (not the original ones)
+                for (int i = 0; i < insertedItemArr.size(); i++) {
+                    if (insertedItemArr[i] == value) {
+                        // Map the position in insertedItemArr back to arr and erase it
+                        arr.erase(arr.begin() + mainArrSize + i);
+                        itemFound = true;
+                        break; // Remove only the first match
                     }
                 }
+                if (!itemFound) {
+                    cout << "\nYou entered a no that you didn't inserted previously";
+                }
             }
+        } else {
+            cout << "You need ans by pressing y(Yes) or n(no).";
         }
     }
 
     // Print the final state of the array
     cout << "\n\nFinal array: ";
-    for (auto &&i : arr)
-        cout << "\t" << i << " ";
+    printArr(arr);
 
     cout << endl << endl << endl;
     return 0;
