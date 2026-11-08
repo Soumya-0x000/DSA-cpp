@@ -9,8 +9,20 @@ void printArr(vector<int> arr) {
         cout << x << "\t";
 }
 
-vector<int> fillArr(vector<int> arr) {
-    
+vector<int> fillArr(vector<int> &arr, int size) {
+    vector<int> insertedItemArr;
+    insertedItemArr.reserve(size);
+    arr.reserve(arr.size() + size);
+
+    while (size--) {
+        int num;
+        cout << "Enter number: " << "\t";
+        cin >> num;
+        arr.push_back(num); // Append the entered number to the end of the array
+        insertedItemArr.push_back(num);
+    }
+
+    return insertedItemArr;
 }
 
 int main() {
@@ -28,13 +40,7 @@ int main() {
         vector<int> insertedItemArr = {};
 
         // Loop runs `size` times (size-- evaluates the old value, then decrements)
-        while (size--) {
-            int num;
-            cout << "Enter number: " << "\t";
-            cin >> num;
-            arr.push_back(num); // Append the entered number to the end of the array
-            insertedItemArr.push_back(num);
-        }
+        insertedItemArr = fillArr(arr, size);
 
         // Print the whole array (original + inserted elements)
         cout << "Here is your updated arr: ";
@@ -48,7 +54,7 @@ int main() {
 
         // Ask whether the user wants to undo (remove) some inserted items
         char shouldPop;
-        cout << "\nWant to popback inserted items?" << '\n' << "y/n: ";
+        cout << "\nWant to take out inserted items?" << '\n' << "y/n: ";
         cin >> shouldPop;
         if (shouldPop == 'y') {
             // Read as a string so the user can type either 'a' or a number
